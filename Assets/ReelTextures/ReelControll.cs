@@ -121,53 +121,55 @@ public class ReelControll : MonoBehaviour
 
     private SymbolName[,] symbolIndexes = new SymbolName[3, 20];
 
-    private static Role 中段GOD = new Role("中段GOD", new SymbolName[3] { SymbolName.GOD, SymbolName.GOD, SymbolName.GOD }, PayType.Pay15);
+    private static Role 中段GOD = new Role("中段GOD", new SymbolName[3] { SymbolName.GOD, SymbolName.GOD, SymbolName.GOD }, PayType.Pay1);
 
-    private static Role クラッシュ = new Role("クラッシュ", new SymbolName[3] { SymbolName.青七, SymbolName.黄七, SymbolName.赤七 }, PayType.ReplayA);
+    private static Role クラッシュ = new Role("クラッシュ", new SymbolName[3] { SymbolName.青七, SymbolName.黄七, SymbolName.赤七 }, PayType.Pay1);
 
-    private static Role 中段ハーデス = new Role("中段ハーデス", new SymbolName[3] { SymbolName.ハーデス, SymbolName.ハーデス, SymbolName.ハーデス }, PayType.ReplayA);
-    private static Role 中段ハーデスフェイク = new Role("中段ハーデスフェイク", new SymbolName[3] { SymbolName.GOD, SymbolName.ハーデス, SymbolName.ハーデス }, PayType.ReplayA);
+    private static Role 中段ハーデス = new Role("中段ハーデス", new SymbolName[3] { SymbolName.ハーデス, SymbolName.ハーデス, SymbolName.ハーデス }, PayType.Pay15);
+    private static Role 中段ハーデスフェイク = new Role("中段ハーデスフェイク", new SymbolName[3] { SymbolName.GOD, SymbolName.ハーデス, SymbolName.ハーデス }, PayType.Pay15);
 
-    private static Role 中段赤七 = new Role("中段赤七", new SymbolName[3] { SymbolName.黄七, SymbolName.黄七, SymbolName.黄七 }, PayType.Pay15);
+    private static Role 中段赤七 = new Role("中段赤七", new SymbolName[3] { SymbolName.赤七, SymbolName.赤七, SymbolName.赤七 }, PayType.Pay15);
     private static Role 中段赤七フェイク = new Role("中段赤七フェイク", new SymbolName[3] { SymbolName.青七, SymbolName.赤七, SymbolName.赤七 }, PayType.Pay15);
 
-    private static Role 中段黄七 = new Role("中段黄七", new SymbolName[3] { SymbolName.黄七, SymbolName.黄七, SymbolName.黄七 }, PayType.Pay15);
+    private static Role 中段黄七 = new Role("中段黄七", new SymbolName[3] { SymbolName.黄七, SymbolName.黄七, SymbolName.黄七 }, PayType.Pay1);
 
-    private static Role 右上がり黄七 = new Role("右上がり黄七", new SymbolName[3] { SymbolName.ハーデス, SymbolName.黄七, SymbolName.青七 }, PayType.ReplayA);
+    private static Role 右上がり黄七 = new Role("右上がり黄七", new SymbolName[3] { SymbolName.ハーデス, SymbolName.黄七, SymbolName.青七 }, PayType.Pay1);
 
-    private static Role 中段青七 = new Role("中段青七", new SymbolName[3] { SymbolName.青七, SymbolName.青七, SymbolName.青七 }, PayType.ReplayA);
+    private static Role 中段青七 = new Role("中段青七", new SymbolName[3] { SymbolName.青七, SymbolName.青七, SymbolName.青七 }, PayType.Pay1);
 
-    private static Role ハズレ = new Role("ハズレ", new SymbolName[3] { SymbolName.青七, SymbolName.黄七, SymbolName.青七 }, PayType.ReplayA);
+    private static Role ハズレA = new Role("ハズレA", new SymbolName[3] { SymbolName.GOD, SymbolName.黄七, SymbolName.黄七 }, PayType.Pay1);
+    private static Role ハズレB = new Role("ハズレB", new SymbolName[3] { SymbolName.GOD, SymbolName.黄七, SymbolName.赤七 }, PayType.Pay1);
+
 
 
     private static ConcurrentRole 中段GOD揃い
-        = new ConcurrentRole("中段GOD揃い", new Role[1] { 中段GOD }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("中段GOD揃い", new Role[] { 中段GOD }, new int[3] { 0, 1, 2 });
 
     private static ConcurrentRole クラッシュ揃い
-        = new ConcurrentRole("クラッシュ揃い", new Role[1] { クラッシュ }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("クラッシュ揃い", new Role[] { クラッシュ }, new int[3] { 0, 1, 2 });
 
     private static ConcurrentRole 押し順ハーデス揃い231
-        = new ConcurrentRole("押し順ハーデス揃い231", new Role[2] { 中段ハーデス, ハズレ }, new int[3] { 2, 0, 1 });
+        = new ConcurrentRole("押し順ハーデス揃い231", new Role[] { 中段ハーデス, ハズレA, ハズレB }, new int[3] { 1, 2, 0 });
     private static ConcurrentRole 押し順ハーデスハズレ揃い231
-        = new ConcurrentRole("押し順ハーデスハズレ揃い231", new Role[2] { 中段ハーデスフェイク, ハズレ }, new int[3] { 2, 0, 1 });
+        = new ConcurrentRole("押し順ハーデスハズレ揃い231", new Role[] { 中段ハーデスフェイク, ハズレA,ハズレB }, new int[3] { 1, 2, 0 });
 
     private static ConcurrentRole 押し順赤七揃い321
-        = new ConcurrentRole("押し順赤七揃い321", new Role[2] { 中段赤七, ハズレ }, new int[3] { 2, 1, 0 });
+        = new ConcurrentRole("押し順赤七揃い321", new Role[] { 中段赤七, ハズレA, ハズレB }, new int[3] { 2, 1, 0 });
 
     private static ConcurrentRole 押し順赤七ハズレ揃い321
-        = new ConcurrentRole("押し順赤七ハズレ揃い321", new Role[2] { 中段赤七フェイク, ハズレ }, new int[3] { 2, 1, 0 });
+        = new ConcurrentRole("押し順赤七ハズレ揃い321", new Role[] { 中段赤七フェイク, ハズレA, ハズレB }, new int[3] { 2, 1, 0 });
 
     private static ConcurrentRole 中段黄七揃い
-        = new ConcurrentRole("中段黄七揃い", new Role[1] { 中段黄七 }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("中段黄七揃い", new Role[] { 中段黄七 }, new int[3] { 0, 1, 2 });
 
     private static ConcurrentRole 右上がり黄七揃い
-        = new ConcurrentRole("右上がり黄七揃い", new Role[1] { 右上がり黄七 }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("右上がり黄七揃い", new Role[] { 右上がり黄七 }, new int[3] { 0, 1, 2 });
 
     private static ConcurrentRole 中段青七揃い
-        = new ConcurrentRole("中段青七揃い", new Role[1] { 中段青七 }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("中段青七揃い", new Role[] { 中段青七 }, new int[3] { 0, 1, 2 });
 
     private static ConcurrentRole ハズレ揃い
-        = new ConcurrentRole("ハズレ揃い", new Role[1] { ハズレ }, new int[3] { 0, 1, 2 });
+        = new ConcurrentRole("ハズレ揃い", new Role[] { ハズレA }, new int[3] { 0, 1, 2 });
 
     // Start is called before the first frame update
     void Start()
@@ -217,24 +219,31 @@ public class ReelControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            ConcurrentRole[] a = new ConcurrentRole[1] { 中段GOD揃い };
-            roles = a[0];
+            ConcurrentRole[] a = new ConcurrentRole[] {
+                中段GOD揃い,中段青七揃い,
+                クラッシュ揃い,
+                中段黄七揃い,ハズレ揃い,
+                押し順ハーデスハズレ揃い231,押し順ハーデス揃い231,
+                押し順赤七ハズレ揃い321,押し順赤七揃い321
+            };
+            roles = a[Random.RandomRange(0,a.Length)];
+            Debug.Log(roles.name);
             Spin();
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             StopReel(0);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             StopReel(1);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             StopReel(2);
         }
@@ -382,7 +391,6 @@ public class ReelControll : MonoBehaviour
             }
             if (isHited)
             {
-                Debug.Log(slipStopAngle[position]);
                 break;
             }
         }
@@ -463,10 +471,6 @@ public class ReelControll : MonoBehaviour
         }
         angle[position] += rollSpeeds[position];
         angle[position] = cramp(angle[position], 360);
-        if (position == 0)
-        {
-            Debug.Log(angle[position] +":" +slipStopAngle[position]);
-        }
         
         reels[position].transform.eulerAngles = new Vector3(-angle[position], 0, 0);
     }
