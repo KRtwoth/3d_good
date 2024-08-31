@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ReelControll : MonoBehaviour
 {
-    public RenderTexture reelTexture;
-    public RenderTexture reelEmissonTexture;
+    public RenderTexture[] reelTexture;
+    public RenderTexture[] reelEmissonTexture;
     public Texture2D[] symbols;
-    public Texture2D[] symbolMasks;
     public Texture2D reelBackWhite;
+    public Texture2D reelBackBlack;
     public GameObject[] reels = new GameObject[3];
 
     private float speedAddAmount = 0.52f;
@@ -16,14 +16,22 @@ public class ReelControll : MonoBehaviour
     private bool[] isRolls = new bool[3] { false, false, false };
     private float[] rotate = new float[3] { 0, 0, 0 };
 
-    private int[] symbolIndexes = new int[20]
-    {
-            0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4
-    };
+    private int[,] symbolIndexes = new int[3,20];
 
     // Start is called before the first frame update
     void Start()
     {
+        symbolIndexes = new int[3, 20]{
+            {
+                4,0,1,3,2,4,0,1,3,2,4,0,1,3,2,4,0,1,3,2
+            },
+            {
+                1,0,4,2,3,1,0,4,2,3,1,0,4,2,3,1,0,4,2,3
+            },
+            {
+                1,0,4,3,2,1,0,4,3,2,1,0,4,3,2,1,0,4,3,2
+            },
+        };
     }
 
     void DrawTextureOnRenderTexture(Texture2D sourceTexture, int x, int y, RenderTexture renderTexture)
@@ -74,7 +82,9 @@ public class ReelControll : MonoBehaviour
         RotateUpdate(0);
         RotateUpdate(1);
         RotateUpdate(2);
-        reelDrawUpdate();
+        reelDrawUpdate(0);
+        reelDrawUpdate(1);
+        reelDrawUpdate(2);
     }
 
     private void RotateUpdate(int speedIndex)
@@ -94,28 +104,28 @@ public class ReelControll : MonoBehaviour
         reels[speedIndex].transform.Rotate(new Vector3(1, 0, 0), -rollSpeeds[speedIndex]);
     }
 
-    private void reelDrawUpdate()
+    private void reelDrawUpdate(int index)
     {
-        int cellHeight = reelTexture.height / 20;
-        DrawTextureOnRenderTexture(reelBackWhite, 0, 0, reelTexture);
-        for (int i = 0; i < 20; i++)
+        int cellHeight = reelTexture[index].height / 20;
+        DrawTextureOnRenderTexture(reelBackWhite, 0, 0, reelTexture[index]);
+        for (int symbolI = 0; symbolI < 20; symbolI++)
         {
-            Texture2D cSymbol = symbols[symbolIndexes[i]];
+            Texture2D cSymbol = symbols[symbolIndexes[index,symbolI]];
             DrawTextureOnRenderTexture(
                 cSymbol,
-                (reelTexture.width / 2) - (cSymbol.width / 2),
-                (cellHeight / 2) - (cSymbol.height / 2) + i * (cellHeight),
-                reelTexture);
+                (reelTexture[index].width / 2) - (cSymbol.width / 2),
+                (cellHeight / 2) - (cSymbol.height / 2) + symbolI * (cellHeight),
+                reelTexture[index]);
         }
-        // DrawTextureOnRenderTexture(reelBackWhite, 0, 0, reelEmissonTexture);
-        for (int i = 0; i < 20; i++)
+        DrawTextureOnRenderTexture(reelBackBlack, 0, 0, reelEmissonTexture[index]);
+        for (int symbolI = 0; symbolI < 20; symbolI++)
         {
-            Texture2D cSymbolMasks = symbols[symbolIndexes[i]];
+            Texture2D cSymbolMasks = symbols[symbolIndexes[index,symbolI]];
             DrawTextureOnRenderTexture(
                 cSymbolMasks,
-                (reelTexture.width / 2) - (cSymbolMasks.width / 2),
-                (cellHeight / 2) - (cSymbolMasks.height / 2) + i * (cellHeight),
-                reelEmissonTexture);
+                (reelTexture[index].width / 2) - (cSymbolMasks.width / 2),
+                (cellHeight / 2) - (cSymbolMasks.height / 2) + symbolI * (cellHeight),
+                reelEmissonTexture[index]);
         }
     }
 

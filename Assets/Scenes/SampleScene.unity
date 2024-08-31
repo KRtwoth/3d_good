@@ -552,7 +552,7 @@ PrefabInstance:
     - target: {fileID: -336020243371620874, guid: 6422e6e6e730d53468f93f0064320c96, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 52805fe644b5d1e498d49c7c0a2e7525, type: 2}
+      objectReference: {fileID: 2100000, guid: 0cb34711b5147b34eacd67592bc9d257, type: 2}
     - target: {fileID: 919132149155446097, guid: 6422e6e6e730d53468f93f0064320c96, type: 3}
       propertyPath: m_Name
       value: chinpoII
@@ -592,7 +592,7 @@ PrefabInstance:
     - target: {fileID: 4634895017077279814, guid: 6422e6e6e730d53468f93f0064320c96, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 52805fe644b5d1e498d49c7c0a2e7525, type: 2}
+      objectReference: {fileID: 2100000, guid: 6643e88fc63779442bdeccedd239fe3c, type: 2}
     - target: {fileID: 6784333135389665749, guid: 6422e6e6e730d53468f93f0064320c96, type: 3}
       propertyPath: m_LocalScale.x
       value: 90
@@ -658,16 +658,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a0a38d13dfe164e93d1055b8d203f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reelTexture: {fileID: 8400000, guid: a5b2a6b62f6bff540817191b8df631ee, type: 2}
-  reelEmissonTexture: {fileID: 8400000, guid: aaa7bfe9ddbded54fa02e7a08b0a05da, type: 2}
+  reelTexture:
+  - {fileID: 8400000, guid: a5b2a6b62f6bff540817191b8df631ee, type: 2}
+  - {fileID: 8400000, guid: 914ebed0772a8394cb1e4be0d1be0363, type: 2}
+  - {fileID: 8400000, guid: ea8f0474c6101dc41addf5bb3c618948, type: 2}
+  reelEmissonTexture:
+  - {fileID: 8400000, guid: aaa7bfe9ddbded54fa02e7a08b0a05da, type: 2}
+  - {fileID: 8400000, guid: fe9e1c4fa9036f942ac54f6e4d2f257d, type: 2}
+  - {fileID: 8400000, guid: ec9f4ad994365b4418c936c11ceb4bad, type: 2}
   symbols:
   - {fileID: 2800000, guid: cb0160273d0ac864eb6ff46aeca99070, type: 3}
   - {fileID: 2800000, guid: a43cb573e9991f04cb0d9df87ac4630d, type: 3}
   - {fileID: 2800000, guid: 6203bf9ea01316147a7372fc4b3ea81a, type: 3}
   - {fileID: 2800000, guid: c7679878224cd3c45a56a7a6a11d8a31, type: 3}
   - {fileID: 2800000, guid: 4e7f11e8d5ded58458c338df0df1b8e4, type: 3}
-  symbolMasks: []
   reelBackWhite: {fileID: 2800000, guid: 59eda321da583fd4b893c20928499bd9, type: 3}
+  reelBackBlack: {fileID: 2800000, guid: 919edf3eadee630489e3c38fa5d6b1c1, type: 3}
   reels:
   - {fileID: 278653473}
   - {fileID: 994836823}
